@@ -9,7 +9,8 @@ const Logo = () => {
         <View style={styles.container}>
             <Image
             style={styles.logo}
-            source={{ uri: require("../../../assets/KIWI.png") }}
+            source={require("../../../assets/KIWI.png") }
+            
             />
         </View>
     );
@@ -20,8 +21,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
     logo: {
-        width: width * 0.5,
-        height: height * 0.5, 
+        width: width * 0.7,
+        height: height * 0.4, 
         resizeMode: "contain",
     },
 });
