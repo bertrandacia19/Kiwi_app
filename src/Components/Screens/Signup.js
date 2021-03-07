@@ -17,7 +17,7 @@ const signup = ({navigation}) =>{
                 navigation.goBack();
              }}
             >
-             <Text>Already got on account? sign in</Text>
+             <Text>Already got on account? Sign in</Text>
             </TouchableOpacity>
 
         </View>
