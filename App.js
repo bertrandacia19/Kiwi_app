@@ -13,23 +13,24 @@ const Stack = createStackNavigator();// navega entre pantallas
 
 export default function App() {
   return (
-
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
-       <NavigationContainer>
-         <Stack.Navigator>
-          
-           <Stack.Screen name ="Signin" component={Signin}/>
-           <Stack.Screen name ="Signup" component={Signup}/>
-
-
-          </Stack.Navigator> 
-       </NavigationContainer>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Signin"
+              component={Signin}
+              initialParams={{ userCreated: false }}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Signup" component={Signup} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </SafeAreaProvider>
     </ThemeProvider>
-     
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
