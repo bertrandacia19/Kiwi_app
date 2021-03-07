@@ -5,7 +5,7 @@ import { ThemeProvider } from "react-native-elements"
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Signin from "./src/Components/Screens/Signin";
+import Signin from "./src/Components/Screens/signin";
 import Signup from "./src/Components/Screens/Signup";
 import theme from "./src/theme";
 
@@ -19,13 +19,8 @@ export default function App() {
        <NavigationContainer>
          <Stack.Navigator>
           
-           <Stack.Screen name ="SignIn" component={Signin}/>
-           <Stack.Screen name ="SignUp" component={Signup}/>
-           <Stack.Screen name ="Signin" component={signin}/>
-           <Stack.Screen name ="Signup" component={signup}/>
-           
-           <Stack.Screen name ="Signin" component={signin}/>
-           <Stack.Screen name ="Signup" component={signup}/>
+           <Stack.Screen name ="Signin" component={Signin}/>
+           <Stack.Screen name ="Signup" component={Signup}/>
 
 
           </Stack.Navigator> 
