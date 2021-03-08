@@ -23,7 +23,7 @@ const Login = ({ navigation, route  }) => {
             {!userCreated ?(
              <Alert type ="success" title = "User Created! You can now sign in!" />
             ): null}
-            <SigninForm/>
+            <SigninForm navigation={navigation}/>
             {/* <Input placeholder="Email" leftIcon={<Icon name ="envelope"/>}/>
             <Input placeholder = "Password" leftIcon={<Icon name = "lock"/>}/> */}
             <Text style = {styles.forgotPassword}>Forgot your Password?</Text>

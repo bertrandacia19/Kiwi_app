@@ -7,7 +7,7 @@ import { firebase } from "../../firebase";
 import Alert from "../Shared/Alert";
 
 
-const SigninForm = () => {
+const SigninForm =  ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -33,7 +33,7 @@ const SigninForm = () => {
         firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-          .then((response) => console.log(response))
+          .then(() => {navigation.navigate("Home");}) 
           .catch((error) => {
              setError(error.message);
            });
