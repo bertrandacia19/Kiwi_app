@@ -12,11 +12,13 @@ import SigninForm from "../forms/SigninForm";
 
 const {width, height } = Dimensions.get("screen");
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation, route  }) => {
+    const {userCreated} = route.params;
 
     return (
         <View style = {styles.container}>
             <Logo />
+            {userCreated ? <Text>User Created! You can Sign In and Have Fun</Text> : null}
             <SigninForm/>
             {/* <Input placeholder="Email" leftIcon={<Icon name ="envelope"/>}/>
             <Input placeholder = "Password" leftIcon={<Icon name = "lock"/>}/> */}
