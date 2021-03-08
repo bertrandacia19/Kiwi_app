@@ -9,6 +9,7 @@ import Signin from "./src/Components/Screens/signin";
 import Signup from "./src/Components/Screens/Signup";
 import theme from "./src/theme";
 
+
 const Stack = createStackNavigator();// navega entre pantallas
 
 export default function App() {
@@ -18,11 +19,11 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
-              name="Signin"
-              component={Signin}
-              initialParams={{ userCreated: false }}
-              options={{ headerShown: false }}
-            />
+             name="Signin" 
+             component={Signin}
+              initialParams={{userCreated : false }}
+              options = {{ headerShow: false}}
+              />
             <Stack.Screen name="Signup" component={Signup} />
           </Stack.Navigator>
         </NavigationContainer>

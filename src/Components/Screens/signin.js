@@ -9,6 +9,8 @@ import { Input, Button} from "react-native-elements";
 /* import Icon from "react-native-vector-icons/FontAwesome"; */
 import Logo from "../Shared/Logo";
 import SigninForm from "../forms/SigninForm";
+import theme from "../../theme";
+import Alert from "../Shared/Alert"
 
 const {width, height } = Dimensions.get("screen");
 
@@ -18,7 +20,9 @@ const Login = ({ navigation, route  }) => {
     return (
         <View style = {styles.container}>
             <Logo />
-            {userCreated ? <Text>User Created! You can Sign In and Have Fun</Text> : null}
+            {!userCreated ?(
+             <Alert type ="success" title = "User Created! You can now sign in!" />
+            ): null}
             <SigninForm/>
             {/* <Input placeholder="Email" leftIcon={<Icon name ="envelope"/>}/>
             <Input placeholder = "Password" leftIcon={<Icon name = "lock"/>}/> */}
