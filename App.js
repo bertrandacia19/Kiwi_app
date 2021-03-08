@@ -9,7 +9,11 @@ import Signin from "./src/Components/Screens/signin";
 import Signup from "./src/Components/Screens/Signup";
 import theme from "./src/theme";
 
+
+
 const Stack = createStackNavigator();// navega entre pantallas
+
+
 
 export default function App() {
   return (
