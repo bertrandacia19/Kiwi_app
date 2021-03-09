@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Signin from "./src/Components/Screens/signin";
 import Signup from "./src/Components/Screens/Signup";
-import Home from "./src/Components/Screens/Home";
+import inicio from "./src/Components/Screens/Home";
 import theme from "./src/theme";
 import {createAppContainer} from "react-navigation"
 import {createDrawerNavigator} from "react-navigation-drawer"
@@ -17,18 +17,22 @@ import {
   ProfileScreen,
   ListHome,
 SignOutScreen} from "./src/Components/Screens/index"
+const DrawerNavigator =createDrawerNavigator(
+  );
 
 //menu
+function Drawer(){
+  return(
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Drawer.Screen name="ListHome" component={ListHome} />
+        <Drawer.Screen name="SignOutScreen" component={SignOutScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
 
-
-const DrawerNavigator =createDrawerNavigator({
- ProfileScreen,
-  ListHome,
-SignOutScreen});
-
-
-export default  createAppContainer(DrawerNavigator);
-
+  )
+}
 
 
 //navegation de pantallas
@@ -36,6 +40,7 @@ export default  createAppContainer(DrawerNavigator);
 const Stack = createStackNavigator();// navega entre pantallas
 
 export default function App() {
+ 
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
@@ -48,7 +53,8 @@ export default function App() {
               options={{ headerShown: false }}
             />
             <Stack.Screen name="Signup" component={Signup} />
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="inicio" component={inicio} />
+            <Stack.Screen name="Drawer" component={Drawer} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

@@ -10,7 +10,7 @@ const signup = ({navigation}) =>{
     return (
         <View>
             <Logo />
-            <SignupForm />
+            <SignupForm navigation={navigation} />
             <TouchableOpacity
                 onPress={() => {
                 navigation.goBack();

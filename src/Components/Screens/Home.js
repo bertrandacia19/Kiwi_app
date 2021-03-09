@@ -2,11 +2,12 @@ import React from "react";
 import {View,Text,StyleSheet,SafeAreaView,TouchableOpacity} from "react-native";
 import {FontAwesome5} from "@expo/vector-icons";
 
-export default class Home extends React.Component{
-    render(){
+const Home = ({}) =>{
+
+
         return(
             <View style ={styles.container}> 
-            <SafeAreaView  style={{flex:1}}>
+            <SafeAreaView  style={{flex:1 ,alignSelf:'flex-start'}}>
             <TouchableOpacity 
             style={{alignItems:"flex-end", margin:16}}
             onPress={this.props.navigation.openDrawe}
@@ -17,11 +18,11 @@ export default class Home extends React.Component{
             </View>
                 <Text style={style.text}>{this.props.name}Home</Text>
             </SafeAreaView>
-           
             </View>
+
         );
     }
-}
+
 
 
 
@@ -39,3 +40,4 @@ text:{
 }
 
 })
+export default Home;

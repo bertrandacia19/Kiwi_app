@@ -4,6 +4,7 @@ import { Input, Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {firebase} from "../../firebase";
 import {validate} from "email-validator";
+import Alert from "../Shared/Alert";
 
 const SignupForm = (navigation) => {
     const [fullname, setFullname] = useState("");
@@ -14,6 +15,7 @@ const SignupForm = (navigation) => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+    const [error, setError] = useState("");
 
     //VERIFICAR QUE LOS DATOS INGRESADOS SEAN CORRECTOS
     const handlerVerify = (input) => {
@@ -40,73 +42,104 @@ const SignupForm = (navigation) => {
             else setConfirmPasswordError(false);
         }
     };
-    const handleSignup = () => {
-        //promesa
-        firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((response) => {
-            navigation.navigate("Signin", {userCreated: true});
-        })
-        /* {console.log(response); */
-        .catch((error) => console.log(error));
-    };
+     const handleSignup = () => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        // Obtener el Unique Identifier generado para cada usuario
+        // Firebase -> Authentication
+        const uid = response.user.uid;
+
+        // Construir el objeto que le enviaremos a la collección de "users"
+        const data = {
+          id: uid,
+          email,
+          fullname,
+        };
+
+        // Obtener la colección desde Firebase
+        const usersRef = firebase.firestore().collection("users");
+
+        // Almacenar la información del usuario que se registra en Firestore
+        usersRef
+          .doc(uid)
+          .set(data)
+          .then(() => {
+            navigation.navigate("Home");
+          })
+          .catch((error) => {
+            console.log(error);
+            setError(error.message);
+          });
+      })
+      .catch((error) => setError(error.message));
+  };
+
     return (
         <View>
-            <Input placeholder="full name"
-                leftIcon={<Icon name="user-circle" />}
-                value={fullname}
-                onChangeText={setFullname}
-                onBlur={() => {
-                    handlerVerify("fullname");
-                }}
-                errorMessage={
-                    fullnameError? "Debes de Ingresar Tu Nombre Completo" : ""
-                }
-                />
-            <Input placeholder="Email"
-                leftIcon={<Icon name="envelope" />}
-                value={email}
-                onChangeText={setEmail}
-                autoCapitalize="none"
-                onBlur={() => {
-                    handlerVerify("email");
-                }}
-                errorMessage={
-                    emailError? "Debes de Ingresar Tu Correo" : ""
-                }
-                />
-            <Input placeholder="Password"
-                leftIcon={<Icon name="lock" />}
-                value={password}
-                onChangeText={setPassword} 
-                secureTextEntry//ocultar contraseña
-                autoCapitalize="none"
-                onBlur={() => {
-                    handlerVerify("password");
-                }}
-                errorMessage={
-                    passwordError? "Debes de Ingresar Una Contraseña Con 6 Caracteres" : ""
-                }
-                />
-            <Input placeholder="confirm Password"
-                leftIcon={<Icon name="lock" />}
-                value={confirmPassword}
-                onChangeText={setConfirmPassword} 
-                secureTextEntry//ocultar contraseña
-                autoCapitalize="none"
-                onBlur={() => {
-                    handlerVerify("confirmPassword");
-                }}
-                errorMessage={
-                    confirmPasswordError? "Contraseña No Coincide" : ""
-                }
-                />
-            <Button title="Create account" onPress ={handleSignup} />
-        </View>
+        {error ? <Alert type="error" title={error} /> : null}
+        <Input
+          placeholder="Full name"
+          leftIcon={<Icon name="user" />}
+          value={fullname}
+          onChangeText={setFullname}
+          onBlur={() => {
+            handlerVerify("fullname");
+          }}
+          errorMessage={
+            fullnameError ? "Por favor ingresa tu nombre completo" : ""
+          }
+        />
+        <Input
+          placeholder="Email"
+          leftIcon={<Icon name="envelope" />}
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+          onBlur={() => {
+            handleVerify("email");
+          }}
+          errorMessage={
+            emailError ? "Por favor ingresa una dirección de correo válida" : ""
+          }
+        />
+        <Input
+          placeholder="Password"
+          leftIcon={<Icon name="lock" />}
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          autoCapitalize="none"
+          onBlur={() => {
+            handleVerify("password");
+          }}
+          errorMessage={
+            passwordError
+              ? "Por favor ingresa una contraseña de mínimo 6 caracteres"
+              : ""
+          }
+        />
+        <Input
+          placeholder="Confirm password"
+          leftIcon={<Icon name="lock" />}
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          secureTextEntry
+          autoCapitalize="none"
+          onBlur={() => {
+            handleVerify("confirmPassword");
+          }}
+          errorMessage={
+            confirmPasswordError
+              ? "Por favor reingresa la contraseña y verifica que es correcta"
+              : ""
+          }
+        />
+        <Button title="Create account" onPress={handleSignup} />
+      </View>
     );
-};
-
-const styles = StyleSheet.create({});
+  };
+  
 
 export default SignupForm;
