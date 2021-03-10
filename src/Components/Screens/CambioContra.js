@@ -15,8 +15,14 @@ const Recover = ({ navigation }) => {
     const [error, setError] = useState("");
     const [visible, setVisible] = useState(false);
     const logoTitle ="Success"
-    const successMessage = "A password recovery message was sent to the email you provided."
-    const hintMessage = "If you are unable to find it please do check your Junk/Spam folder."
+    const successMessage = ""
+    const hintMessage = ""
+    
+    
+    
+    
+    
+    
 
     const handleVerify = (input) => {
         if (input === "email") {
@@ -67,7 +73,7 @@ const Recover = ({ navigation }) => {
                 style={styles.goBack}
                 onPress={() => navigation.navigate('Signin')}
             >
-                <Text>Tapped by mistake? <Text style={styles.goBackText}>Go back</Text></Text>
+                <Text style={styles.goBackText}>Go back</Text>
             </TouchableOpacity>
             {/* Success Message of the password recovery email */}
             <PopUpMessage 
@@ -86,22 +92,22 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems: 'center',
-        backgroundColor: theme.colors.grey,
+
     },
     button:{
         alignItems:'center',
         width: width * 0.8,
         padding: 8,
-        marginTop:height*0.03,
+        marginTop:height*0,
         backgroundColor:theme.colors.blue,
     },
     text:{
-        color: theme.colors.dark,
-        fontSize:18,
+        fontSize:20,
+        fontWeight: "bold",
     },
     input:{
         fontSize:18,
-        color: theme.colors.dark,
+       color:"#231F20",
         paddingTop:height*0.1
     },
     goBack:{
@@ -110,7 +116,7 @@ const styles = StyleSheet.create({
     },
     goBackText:{
         alignSelf:'center',
-        color:theme.colors.red,
+        color:"#231F20",
     },
 });
 

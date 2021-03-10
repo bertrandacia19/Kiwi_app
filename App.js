@@ -13,7 +13,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import PersistLogin from "./src/firebase/persistLogin";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Recover from './src/Components/Screens/CambioContra'
-
+import SignOut from './src/Components/Screens/SignOut';
 
 //import theme from "./src/theme";
 //import PersistLogin from "./src/firebase/persistLogin";
@@ -36,10 +36,9 @@ function MyInicio() {
 
     <Inicio.Screen name="Inicio"
     component={Home}options={{
-        tabBarColor:'#FFB347', tabBarIcon:({color})=>(<FontAwesome name="home" size={26} color={color } />)}}  />
-    <Inicio.Screen name="  " options={{ tabBarColor:'#FFB347',tabBarIcon:({color})=>(<MaterialIcons name="person-pin" size={24} color={color } />)}}component={Home} />
-    <Inicio.Screen name=" "options={{ tabBarColor:'#FFB347',tabBarIcon:({color})=>(<FontAwesome name="location-arrow" size={24} color={color } /> )}} component={Home} />
-   
+        tabBarColor:'#FF8E18', tabBarIcon:({color})=>(<FontAwesome name="home" size={26} color={color } />)}}  />
+    <Inicio.Screen name=" "options={{ tabBarColor:'#FF8E18',tabBarIcon:({color})=>(<FontAwesome name="location-arrow" size={24} color={color } /> )}} component={Home} />
+    <Inicio.Screen name="  " options={{ tabBarColor:'#FF8E18',tabBarIcon:({color})=>(<MaterialIcons name="person-pin" size={24} color={color } />)}}component={SignOut} />
   </Inicio.Navigator>
   
    )

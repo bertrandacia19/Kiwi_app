@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     },
     bubble1:{
         width: width ,
-        backgroundColor:'#d9f473',
+        backgroundColor:'#70DB42',
         marginTop: 0,
         height: height * 0.20,
         alignSelf: 'center',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     bubble:{
         width: width * 0.9,
-        backgroundColor:'#5fbc85',
+        backgroundColor:'#70DB42',
         margin: 10,
         padding:10,
         alignSelf: 'center',
@@ -79,17 +79,14 @@ const styles = StyleSheet.create({
         margin:5,
         fontSize: 30,
     },
-    ahorro:{
-        margin:10,
-        fontSize: 50,
-    },
+   
     Zone: {
         width: width ,
         height: height * 0.10,
         resizeMode: "cover",
      },
          header: {
-      backgroundColor: "#FFB347",
+      backgroundColor: "#FF8E18",
     },
 });
 

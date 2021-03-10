@@ -33,18 +33,18 @@ const styles = StyleSheet.create({
     successMessage:{
         fontWeight:'bold',
         fontSize: 18,
-        color:theme.colors.dark,
+        color:'#ffff',
     },
     hintMessage:{
         fontWeight:'bold',
         paddingTop:15,
         fontSize: 18,
-        color:theme.colors.dark,
+        color:'#ffff',
     },
     overlay:{
         width:width*0.8,
         height:height*0.7,
-        backgroundColor:theme.colors.grey,
+        backgroundColor:'#FFB347',
         paddingLeft:width*0.08,
         paddingRight:width*0.08,
         justifyContent:'center',
@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         width: width * 0.6,
         height: width *0.13,
-        padding: 5,
+        padding: 7,
         marginTop:height*0.03,
-        backgroundColor:theme.colors.blue,
+        color:'#ffff',
     },
     overlayButtonText:{
         fontSize:30,
