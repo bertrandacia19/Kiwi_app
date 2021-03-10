@@ -2,15 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from 'react-native';
 import { ThemeProvider } from "react-native-elements"
-import { FontAwesome } from '@expo/vector-icons'; 
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Signin from "./src/Components/Screens/signin";
 import Signup from "./src/Components/Screens/Signup";
 import Home from "./src/Components/Screens/Home";
-import { MaterialIcons } from '@expo/vector-icons'; 
 //import theme from "./src/theme";
 //import PersistLogin from "./src/firebase/persistLogin";
 
