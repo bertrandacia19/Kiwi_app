@@ -18,31 +18,31 @@ const SignupForm = (navigation) => {
     const [error, setError] = useState("");
 
     //VERIFICAR QUE LOS DATOS INGRESADOS SEAN CORRECTOS
-    const handlerVerify = (input) => {
-        if (input === "fullname"){
-            //verificar nombre del ususario
-            if(!fullname)
-                setFullnameError(true)
-            else
-                setFullnameError(false);
-        } else if (input === "email"){
-            //verificar el correo electronico
-            if(!email) setEmailError(true);
-            else if (!validate(email)) setEmailError(true);
-                else setEmailError(false)
-        }else if (input === "password"){
-            //verificar la contraseña
-            if (!password) setPasswordError(true);
-            else if (password.length < 6) setPasswordError(true);
-            else setPasswordError(false);
-        }   else if (input === "confirmPassword"){
-            //verificar la confirmacion de la contraseña
-            if (!confirmPassword) setConfirmPasswordError(true);
-            else if (confirmPassword !== password) setConfirmPasswordError(true)
-            else setConfirmPasswordError(false);
-        }
-    };
-     const handleSignup = () => {
+    // Verifica que los datos ingresados sean correctos
+  const handleVerify = (input) => {
+    if (input === "fullname") {
+      // Verificar el nombre del usuario
+      if (!fullname) setFullnameError(true);
+      else setFullnameError(false);
+    } else if (input === "email") {
+      // Verificar el correo electrónico
+      if (!email) setEmailError(true);
+      else if (!validate(email)) setEmailError(true);
+      else setEmailError(false);
+    } else if (input === "password") {
+      // Verificar la contraseña
+      if (!password) setPasswordError(true);
+      else if (password.length < 6) setPasswordError(true);
+      else setPasswordError(false);
+    } else if (input === "confirmPassword") {
+      // Verificar la confirmación de la contraseña
+      if (!confirmPassword) setConfirmPasswordError(true);
+      else if (confirmPassword !== password) setConfirmPasswordError(true);
+      else setConfirmPasswordError(false);
+    }
+  };
+
+  const handleSignup = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -76,70 +76,70 @@ const SignupForm = (navigation) => {
       .catch((error) => setError(error.message));
   };
 
-    return (
-        <View>
-        {error ? <Alert type="error" title={error} /> : null}
-        <Input
-          placeholder="Full name"
-          leftIcon={<Icon name="user" />}
-          value={fullname}
-          onChangeText={setFullname}
-          onBlur={() => {
-            handlerVerify("fullname");
-          }}
-          errorMessage={
-            fullnameError ? "Por favor ingresa tu nombre completo" : ""
-          }
-        />
-        <Input
-          placeholder="Email"
-          leftIcon={<Icon name="envelope" />}
-          value={email}
-          onChangeText={setEmail}
-          autoCapitalize="none"
-          onBlur={() => {
-            handleVerify("email");
-          }}
-          errorMessage={
-            emailError ? "Por favor ingresa una dirección de correo válida" : ""
-          }
-        />
-        <Input
-          placeholder="Password"
-          leftIcon={<Icon name="lock" />}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          autoCapitalize="none"
-          onBlur={() => {
-            handleVerify("password");
-          }}
-          errorMessage={
-            passwordError
-              ? "Por favor ingresa una contraseña de mínimo 6 caracteres"
-              : ""
-          }
-        />
-        <Input
-          placeholder="Confirm password"
-          leftIcon={<Icon name="lock" />}
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-          secureTextEntry
-          autoCapitalize="none"
-          onBlur={() => {
-            handleVerify("confirmPassword");
-          }}
-          errorMessage={
-            confirmPasswordError
-              ? "Por favor reingresa la contraseña y verifica que es correcta"
-              : ""
-          }
-        />
-        <Button title="Create account" onPress={handleSignup} />
-      </View>
-    );
-  };
+  return (
+    <View>
+      {error ? <Alert type="error" title={error} /> : null}
+      <Input
+        placeholder="Full name"
+        leftIcon={<Icon name="user" />}
+        value={fullname}
+        onChangeText={setFullname}
+        onBlur={() => {
+          handleVerify("fullname");
+        }}
+        errorMessage={
+          fullnameError ? "Por favor ingresa tu nombre completo" : ""
+        }
+      />
+      <Input
+        placeholder="Email"
+        leftIcon={<Icon name="envelope" />}
+        value={email}
+        onChangeText={setEmail}
+        autoCapitalize="none"
+        onBlur={() => {
+          handleVerify("email");
+        }}
+        errorMessage={
+          emailError ? "Por favor ingresa una dirección de correo válida" : ""
+        }
+      />
+      <Input
+        placeholder="Password"
+        leftIcon={<Icon name="lock" />}
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        autoCapitalize="none"
+        onBlur={() => {
+          handleVerify("password");
+        }}
+        errorMessage={
+          passwordError
+            ? "Por favor ingresa una contraseña de mínimo 6 caracteres"
+            : ""
+        }
+      />
+      <Input
+        placeholder="Confirm password"
+        leftIcon={<Icon name="lock" />}
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+        autoCapitalize="none"
+        onBlur={() => {
+          handleVerify("confirmPassword");
+        }}
+        errorMessage={
+          confirmPasswordError
+            ? "Por favor reingresa la contraseña y verifica que es correcta"
+            : ""
+        }
+      />
+      <Button title="Create account" onPress={handleSignup} />
+    </View>
+  );
+};
   
 
 export default SignupForm;
