@@ -14,26 +14,27 @@ import Alert from "../Shared/Alert"
 
 const {width, height } = Dimensions.get("screen");
 
-const Login = ({ navigation, route  }) => {
-    const {userCreated} = route.params;
-
+const Login = ({ navigation }) => {
     return (
-        <View style = {styles.container}>
-            <Logo />
-            {!userCreated ?(
-             <Alert type ="success" title = "User Created! You can now sign in!" />
-            ): null}
+        <View style={styles.container}>
+            <Logo title="Login" />
             <SigninForm navigation={navigation}/>
-            {/* <Input placeholder="Email" leftIcon={<Icon name ="envelope"/>}/>
-            <Input placeholder = "Password" leftIcon={<Icon name = "lock"/>}/> */}
-            <Text style = {styles.forgotPassword}>Forgot your Password?</Text>
-            {/* <Button title = "SignIn" /> */}
-            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-             <Text>Don't have an account? Sign up</Text>
-           </TouchableOpacity>
+            
+            <TouchableOpacity
+                style={styles.forgot}
+                onPress={() => navigation.navigate('Home')}
+            >
+                <Text>Forgot your password?</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.create}
+                onPress={() => navigation.navigate('SignUp')}
+            >
+                <Text>Dont have an account? <Text style={styles.register}>Register Now</Text></Text>
+            </TouchableOpacity>
         </View>
-    );
-};
+    )
+}
 
 
 const styles = StyleSheet.create({
