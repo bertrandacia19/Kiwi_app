@@ -12,14 +12,18 @@ import SigninForm from "../forms/SigninForm";
 import theme from "../../theme";
 import Alert from "../Shared/Alert"
 
-const {width, height } = Dimensions.get("screen");
 
-const Login = ({ navigation }) => {
+
+const Login = ({ navigation, route }) => {
+    const { userCreated } = route.params;
     return (
-        <View style={styles.container}>
-            <Logo title="Login" />
+  
+        <View style = {styles.container}>
+            <Logo />
+            {userCreated ?(
+             <Alert type ="success" title = "User Created! You can now sign in!" />
+            ): null}
             <SigninForm navigation={navigation}/>
-            
             <TouchableOpacity
                 style={styles.forgot}
                 onPress={() => navigation.navigate('Home')}
@@ -33,8 +37,13 @@ const Login = ({ navigation }) => {
                 <Text>Dont have an account? <Text style={styles.register}>Register Now</Text></Text>
             </TouchableOpacity>
         </View>
-    )
-}
+ 
+
+        
+
+         
+    );
+};
 
 
 const styles = StyleSheet.create({

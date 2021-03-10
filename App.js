@@ -11,11 +11,18 @@ import Signin from "./src/Components/Screens/signin";
 import Signup from "./src/Components/Screens/Signup";
 import Home from "./src/Components/Screens/Home";
 import { MaterialIcons } from '@expo/vector-icons'; 
+import PersistLogin from "./src/firebase/persistLogin";
+
+
+
 //import theme from "./src/theme";
 //import PersistLogin from "./src/firebase/persistLogin";
 
 const Inicio = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+ 
+
 
 function MyInicio() {
   return (
@@ -38,17 +45,31 @@ function MyInicio() {
     }
    
 export default function App() {
+  const [user, setUser] = useState({});
+
+  // Verificar si ya existen credenciales de autenticación
+  useEffect(() => {
+    const userData = PersistLogin();
+    setUser(userData);
+  }, []);
   return (
     <SafeAreaProvider>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}}>
-          <Stack.Screen name="Signin" component={Signin}/>
-          <Stack.Screen name="SignUp" component={Signup} />
-          <Stack.Screen name="Home" component={MyInicio} />
+          <Stack.Screen name="Signin" component={Signin} initialParams={{ userCreated: false }} options={{ headerShown: false }} />
+          <Stack.Screen name="SignUp" component={Signup}  />
+          <Stack.Screen name="Home" component={MyInicio } initialParams={{ user: user }}/>
       </Stack.Navigator>
     </NavigationContainer>
     </SafeAreaProvider>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

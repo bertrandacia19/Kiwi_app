@@ -85,6 +85,7 @@ const SigninForm =  ({navigation}) => {
         leftIcon={<Icon name="lock" />}
         value={password}
         onChangeText={setPassword}
+        secureTextEntry
         onBlur={() => {
           handleVerify("password");
         }}
