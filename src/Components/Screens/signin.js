@@ -14,7 +14,7 @@ import Alert from "../Shared/Alert"
 
 
 
-const Login = ({ navigation, route }) => {
+const Signin= ({ navigation, route }) => {
     const { userCreated } = route.params;
     return (
   
@@ -26,7 +26,7 @@ const Login = ({ navigation, route }) => {
             <SigninForm navigation={navigation}/>
             <TouchableOpacity
                 style={styles.forgot}
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => navigation.navigate('Recover')}
             >
                 <Text>Forgot your password?</Text>
             </TouchableOpacity>
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Login;
+export default Signin;
