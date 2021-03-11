@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions} from 'react-native';
 import Logo from '../Shared/Logo';
+import { Input, Button } from "react-native-elements";
 import { firebase } from "../../firebase";
 const {width, height} = Dimensions.get("screen");
 import theme from '../../theme/index';
 import { validate } from "email-validator";
 import Alert from '../Shared/Alert';
-import { Input } from "react-native-elements";
 import PopUpMessage from '../Shared/PopUpMessage';
 
 const Recover = ({ navigation }) => {
@@ -67,7 +67,7 @@ const Recover = ({ navigation }) => {
                 style={styles.button}
                 onPress={handleRecovery}
             >
-                <Text style={styles.text}>Verify</Text>
+                  <Button buttonStyle={styles.button} title="Verify" onPress={handleRecovery} />
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.goBack}
@@ -99,15 +99,16 @@ const styles = StyleSheet.create({
         width: width * 0.8,
         padding: 8,
         marginTop:height*0,
-        backgroundColor:theme.colors.blue,
+        
     },
     text:{
         fontSize:20,
         fontWeight: "bold",
+        color:"#0a0a0a",
     },
     input:{
         fontSize:18,
-       color:"#231F20",
+       color:"#0a0a0a",
         paddingTop:height*0.1
     },
     goBack:{
@@ -116,8 +117,17 @@ const styles = StyleSheet.create({
     },
     goBackText:{
         alignSelf:'center',
-        color:"#231F20",
+        color:"#0a0a0a",
+        fontSize:20,
     },
+    button: {
+        width: 380,
+        backgroundColor:'#527e05',
+        margin: 5,
+        
+        borderRadius: 40,
+        alignSelf: "center",
+      },
 });
 
 export default Recover;
