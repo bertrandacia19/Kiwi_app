@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import {StyleSheet, View, Text} from "react-native";
+       
+import {StyleSheet, View, Text,TouchableOpacity} from "react-native";
 import {Input, Button} from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { validate } from "email-validator";
@@ -91,13 +92,31 @@ const SigninForm =  ({navigation}) => {
         }}
         errorMessage={passwordError ? "Por favor ingresa tu contraseña" : null}
       />
-      <Button title="Signin" onPress={handleSignin} />
+       <TouchableOpacity
+                
+                onPress={() => navigation.navigate('Recover')}
+            >
+                <Text style={styles.forgot}>Forgot your password?</Text>
+            </TouchableOpacity>
+      <Button  buttonStyle={styles.button}  title="Signin" onPress={handleSignin} />
     </View>
   );
 };
 
 
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    width: 380,
+    backgroundColor:'#527e05',
+    margin: 5,
+    borderRadius: 40,
+    alignSelf: "center",
+  },
+ forgot:{
+textAlign:'right',
+ },
+
+});
 
 export default SigninForm;

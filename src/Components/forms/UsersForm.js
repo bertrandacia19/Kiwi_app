@@ -6,14 +6,14 @@ const { width, height } = Dimensions.get("screen");
 
 const UsersForm = () => {
     
-  const User ="User"
+ 
   const Name = "Full Name";
   const Email = "Email";
     
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>{User}</Text>
+    
       <Text style={styles.titleText}>{Name}</Text>
       <Text style={styles.titleText}>{Email}</Text>
     </View>

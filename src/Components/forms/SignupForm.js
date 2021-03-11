@@ -6,7 +6,7 @@ import {firebase} from "../../firebase";
 import {validate} from "email-validator";
 import Alert from "../Shared/Alert";
 
-const SignupForm = (navigation) => {
+const SignupForm = ({navigation}) => {
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -66,7 +66,7 @@ const SignupForm = (navigation) => {
           .doc(uid)
           .set(data)
           .then(() => {
-            navigation.navigate("Signin");
+            navigation.navigate("Home");
           })
           .catch((error) => {
             console.log(error);
@@ -136,10 +136,18 @@ const SignupForm = (navigation) => {
             : ""
         }
       />
-      <Button title="Create account" onPress={handleSignup} />
+      <Button  buttonStyle={styles.button} title="Create account" onPress={handleSignup} />
     </View>
   );
 };
   
-
+const styles = StyleSheet.create({
+  button: {
+    width: 380,
+    backgroundColor:'#527e05',
+    margin: 5,
+    borderRadius: 40,
+    alignSelf: "center",
+  },
+});
 export default SignupForm;

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity} from 'react-native';
+import {Input, Button} from "react-native-elements";
 import UserForm from "../forms/UsersForm";
 import theme from "../../theme";
 import Users from '../Shared/Users';
@@ -32,8 +33,9 @@ const SingnOut = ({ navigation}) => {
             <TouchableOpacity
                 style={styles.logout}
                 onPress={handleLogOut}
+                
             >
-                <Text style={styles.logOutText}>Log Out</Text>
+                <Button  buttonStyle={styles.button} title="Sign Out" onPress={handleLogOut} />
             </TouchableOpacity>
             <PopUpMessage style={styles.logOutme}
                 navigation={navigation} 
@@ -69,6 +71,14 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         fontSize:18,
     },
+    button: {
+        width: 380,
+        backgroundColor:'#527e05',
+        margin: 5,
+        borderRadius: 40,
+        alignSelf: "center",
+
+      },
 });
 
 export default SingnOut ;

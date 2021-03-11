@@ -25,16 +25,10 @@ const Signin= ({ navigation, route }) => {
             ): null}
             <SigninForm navigation={navigation}/>
             <TouchableOpacity
-                style={styles.forgot}
-                onPress={() => navigation.navigate('Recover')}
-            >
-                <Text>Forgot your password?</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
                 style={styles.create}
                 onPress={() => navigation.navigate('SignUp')}
             >
-                <Text>Dont have an account? <Text style={styles.register}>Register Now</Text></Text>
+                <Text>New to KIWI ? <Text style={styles.register}>Create an Account.</Text></Text>
             </TouchableOpacity>
         </View>
  
@@ -51,10 +45,16 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         padding: 10,
+      
     },
+ 
+    
   
     forgotPassword: {
         textAlign: "right",
+    },
+    register:{
+        color:"#FF8E18",
     },
 });
 

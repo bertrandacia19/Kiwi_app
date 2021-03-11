@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     bubble:{
         width: width * 0.9,
-        backgroundColor:'#70DB42',
+        backgroundColor:'#d9f473',
         margin: 10,
         padding:10,
         alignSelf: 'center',
