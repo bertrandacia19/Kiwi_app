@@ -107,7 +107,7 @@ const SigninForm =  ({navigation}) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: 380,
+    width: 300,
     backgroundColor:'#527e05',
     margin: 5,
     borderRadius: 40,

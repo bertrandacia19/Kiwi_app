@@ -66,7 +66,7 @@ const SignupForm = ({navigation}) => {
           .doc(uid)
           .set(data)
           .then(() => {
-            navigation.navigate("Home");
+            navigation.navigate("Signin");
           })
           .catch((error) => {
             console.log(error);
