@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
        
 import {StyleSheet, View, Text,TouchableOpacity} from "react-native";
 import {Input, Button} from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { validate } from "email-validator";
-import { firebase } from "../../firebase";
+//import { firebase } from "../../firebase";
 import Alert from "../Shared/Alert";
-
+import { context as AuthContext } from "../../Provider/AuthContext";
 
 const SigninForm =  ({navigation}) => {
+  //implemetacion del context para funcionalidades de autenticacion
+  const {state, signin} = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+   setError(state.errorMessage);
+  }, [state.errorMessage]);
+
+  useEffect(() => {
+    console.log(state.user);
+  }, [state.user]);
 
 
 
@@ -31,39 +41,14 @@ const SigninForm =  ({navigation}) => {
   };
 
   const handleSignin = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        // Obtener el Unique Identifier generado para cada usuario
-        // Firebase -> Authentication
-        const uid = response.user.uid;
 
-        // Obtener la colección desde Firebase
-        const usersRef = firebase.firestore().collection("users");
+    //iniciar sesion implementando el contexto de autenticacion
+    signin(email,password);
 
-        // Verificar que el usuario existe en Firebase authentication
-        // y también está almacenado en la colección de usuarios.
-        usersRef
-          .doc(uid)
-          .get()
-          .then((firestoreDocument) => {
-            if (!firestoreDocument.exists) {
-              setError("User does not exist in the database!");
-              return;
-            }
+  
 
-            // Obtener la información del usuario y enviarla a la pantalla Home
-            const user = firestoreDocument.data();
-
-            navigation.navigate("Home", { user });
-          });
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+    
   };
-
   return (
     <View>
       {error ? <Alert title={error} type="error" /> : null}

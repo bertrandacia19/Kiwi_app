@@ -14,6 +14,7 @@ import PersistLogin from "./src/firebase/persistLogin";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Recover from './src/Components/Screens/CambioContra'
 import SignOut from './src/Components/Screens/SignOut';
+import { Provider as AuthProvider, Context as AuthContext} from "./src/Provider/AuthContext";
 
 //import theme from "./src/theme";
 //import PersistLogin from "./src/firebase/persistLogin";
@@ -44,25 +45,20 @@ function MyInicio() {
    )
     }
    
-export default function App() {
-  const [user, setUser] = useState({});
 
-  // Verificar si ya existen credenciales de autenticación
-  useEffect(() => {
-    const userData = PersistLogin();
-    setUser(userData);
-  }, []);
   return (
-    <SafeAreaProvider>
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown:false}}>
-          <Stack.Screen name="Signin" component={Signin} initialParams={{ userCreated: false }} options={{ headerShown: false }} />
-          <Stack.Screen name="SignUp" component={Signup}  />
-          <Stack.Screen name="Recover" component={Recover} />
-          <Stack.Screen name="Home" component={MyInicio } initialParams={{ user: user }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-    </SafeAreaProvider>
+   <AuthProvider>
+      <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown:false}}>
+            <Stack.Screen name="Signin" component={Signin} initialParams={{ userCreated: false }} options={{ headerShown: false }} />
+            <Stack.Screen name="SignUp" component={Signup}  />
+            <Stack.Screen name="Recover" component={Recover} />
+            <Stack.Screen name="Home" component={MyInicio } initialParams={{ user: user }}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+      </SafeAreaProvider>
+    </AuthProvider>
   );
 }
 
