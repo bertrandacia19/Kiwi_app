@@ -15,14 +15,12 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 
 const Signin= ({ navigation, route }) => {
-    const { userCreated } = route.params;
+   
     return (
   
         <View style = {styles.container}>
             <Logo />
-            {userCreated ?(
-             <Alert type ="success" title = "User Created! You can now sign in!" />
-            ): null}
+           
             <SigninForm navigation={navigation}/>
             <TouchableOpacity
                 style={styles.create}

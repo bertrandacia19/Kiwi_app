@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect}  from "react";
        
 import {StyleSheet, View, Text,TouchableOpacity} from "react-native";
 import {Input, Button} from "react-native-elements";
@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { validate } from "email-validator";
 //import { firebase } from "../../firebase";
 import Alert from "../Shared/Alert";
-import { context as AuthContext } from "../../Provider/AuthContext";
+import { Context as AuthContext } from "../../providers/AuthContext";
 
 const SigninForm =  ({navigation}) => {
   //implemetacion del context para funcionalidades de autenticacion
