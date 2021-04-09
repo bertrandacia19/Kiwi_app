@@ -1,9 +1,6 @@
 
 import React, { useEffect, useState ,useContext} from "react";
-import { StyleSheet } from 'react-native';
-import { ThemeProvider } from "react-native-elements"
 import { FontAwesome } from '@expo/vector-icons'; 
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Signin from "../Screens/signin";

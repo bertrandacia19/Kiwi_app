@@ -1,5 +1,4 @@
 import React, { useContext, useState,useEffect}  from "react";
-       
 import {StyleSheet, View, Text,TouchableOpacity} from "react-native";
 import {Input, Button} from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
