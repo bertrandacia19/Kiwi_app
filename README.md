@@ -1,10 +1,10 @@
 # Kiwi_app
 
 
-######Imagenes Proyecto
+# Imagenes Proyecto
 
 
-##Tecnologias utilizadas
+## Tecnologias utilizadas
 
 
-##Intrucciones para la instalación
+## Intrucciones para la instalación
