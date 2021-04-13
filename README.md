@@ -1,7 +1,7 @@
 # Kiwi_app
 
-
-# Imagenes Proyecto
+<img  src="/assets/KIWI.png"  alt="My cool logo"/>
+## Imagenes Proyecto
 
 
 ## Tecnologias utilizadas
