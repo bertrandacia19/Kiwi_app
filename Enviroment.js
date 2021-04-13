@@ -24,7 +24,7 @@ const ENV = {
 };
 
 const getEnvVars = (env = constant.manifest.releaseChannel) =>{
-    if(__DEV__) return ENV.dev;
+    if(_DEV_) return ENV.dev;
     else if(env == "production" || env == "default") return ENV.production;
 };
 
