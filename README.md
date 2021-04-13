@@ -8,6 +8,11 @@ general sobre una receta.
 
 
 ## Tecnologias utilizadas
+- React Native 
+- Expo
+- React Navigation
+- Native Base
+- Axios
 
 
 ## Intrucciones para la instalación
