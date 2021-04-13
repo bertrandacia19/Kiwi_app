@@ -14,5 +14,9 @@ general sobre una receta.
 - Native Base
 - Axios
 
-
 ## Intrucciones para la instalación
+
+## Contribuidores
+- Rocio Lopez
+- Nicole Aguilar
+- Dacia Bertrand
