@@ -6,20 +6,33 @@ import { Avatar } from 'react-native-elements';
 
 const { width, height } = Dimensions.get("screen");
 
-const Users = ({title}) => {
+//imagen usuario
+const Users = ({ picture, title}) => {
   return (
     <View style={styles.container}>
+      {picture === undefined ? (
       <Avatar
        size="xlarge"
        rounded
-       title="DB"
-       overlayContainerStyle={{backgroundColor:theme.colors.blue}}
-       onPress={() => console.log("Works!")}
+       title={title}
+       overlayContainerStyle={{backgroundColor: theme.colors.blue}}
        activeOpacity={0.7}
       />
-    </View>
+    
+  ) : (
+
+    <Avatar
+    size="xlarge"
+    rounded
+    source = {{ uri: picture }}
+    overlayContainerStyle={{ backgroundColor: theme.colors.blue }}
+    avtiveOpacity={0.7}
+    />
+  )}
+  </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

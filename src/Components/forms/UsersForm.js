@@ -1,14 +1,17 @@
-import React  from "react";
+import React, {useContext}  from "react";
 import { StyleSheet, View, Dimensions, Text} from "react-native";
 import theme from '../../theme';
+import { Context as AuthContext} from "../../providers/AuthContext";
 
 const { width, height } = Dimensions.get("screen");
 
+
 const UsersForm = () => {
+  const { state, singnOut } = useContext(AuthContext);
     
  
-  const Name = "Full Name";
-  const Email = "Email";
+  const Name = state.user.fullname;
+  const Email = state.user.email;
     
 
   return (

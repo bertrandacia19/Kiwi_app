@@ -1,21 +1,45 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity} from 'react-native';
-import {Input, Button} from "react-native-elements";
+import {Button} from "react-native-elements";
 import UserForm from "../forms/UsersForm";
 import theme from "../../theme";
 import Users from '../Shared/Users';
 import {firebase} from '../../firebase';
 import PopUpMessage from '../Shared/PopUpMessage'
+import { Context as AuthContext} from "../../providers/AuthContext";
 
 const { width, height } = Dimensions.get("screen");
 
 const SingnOut = ({ navigation}) => {
-    const [visible, setVisible] = useState(false);
-    const logoTitle ="Goodbye"
+   /*  const [visible, setVisible] = useState(false); */
+    /* const logoTitle ="Goodbye"
     const successMessage = "You have just logged out from KIWI"
-    const hintMessage = "I hope you enjoyed the experience!"
-    
+    const hintMessage = "I hope you enjoyed the experience!" */
+    const { state, signout } = useContext(AuthContext);
     const handleLogOut = () => {
+        signout();
+    };
+
+    return(
+        <View style={styles.container}>
+            {state.user.fullname === undefined ? (
+                <Users picture={state.user.pictureUrl}/>
+            ) : (
+                <Users
+                    picture={state.user.pictureUrl}
+                    title={state.user.fullname}
+                />
+            )}
+            <UserForm navigation={navigation} />
+            <TouchableOpacity style={styles.logout} onPress={handleLogOut}>
+               <Text style={styles.logOutText}>signout</Text> 
+            </TouchableOpacity>
+        </View>
+    );
+};
+        
+    
+    /* const handleLogOut = () => {
         firebase
           .auth()
           .signOut()
@@ -25,8 +49,8 @@ const SingnOut = ({ navigation}) => {
           .catch((error) => {
             setError(error.message);
           });
-      };
-    return (
+      }; */
+   /*  return (
         <View style={styles.container}>
             <Users title="User" />
             <UserForm navigation={navigation} />
@@ -46,8 +70,8 @@ const SingnOut = ({ navigation}) => {
                 hintMessage={hintMessage} 
             />
         </View>
-    )
-}
+    )  */
+
 
 const styles = StyleSheet.create({
     container : {
@@ -63,7 +87,7 @@ const styles = StyleSheet.create({
       
     },
     logOutme:{
-        backgroundColor:'#5fbc85',
+        backgroundColor: theme.colors.secondary,
        
      },
 
