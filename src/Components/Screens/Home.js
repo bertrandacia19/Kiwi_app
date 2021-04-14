@@ -1,128 +1,125 @@
-//importación de los modulos necesarios
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, FlatList, Dimensions } from "react-native";
-import { Container, Input, Icon, Item, Button, Header, H1, Spinner, Card, CardItem, H3, Body } from "native-base";
-import backend from '../../Api.js/Backend';
-import getEnvVars from "../../../EnviromentApi";
+import React from 'react';
+import { StyleSheet, Text, ScrollView, Dimensions, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Container, Input, Icon, Item, Button, Header, H1, View, Spinner, Card, CardItem, H3, Body } from "native-base";
+import { Feather } from '@expo/vector-icons';
 
-const { apiKey, apiImageUrl } = getEnvVars();
-
-// Obtener los valores por destructuring
 const { width, height } = Dimensions.get("window");
 
-// Variable que contiene la pantalla (renderizar)
-const Home = ({ navigation }) => {
-  // Maneja el estado de las recetas
-  const [recipe, setRecipe] = useState(null);
-  const [error, setError] = useState(false);
-
-  const getRecipe = async () => {
-    try {
-      // Consultar la API de recetas
-      const response = await backend.get(
-        `recipes/complexSearch?apiKey=cb4ed0fc1360404aa0033a4b54f1f29d`
-      );
-
-      setRecipe(response.data);
-    } catch (error) {
-      // Error al momento de ejecutar la petición a la API
-      setError(true);
-    }
-  };
-
-
-  // Hook de efecto
-  useEffect(() => {
-    // Efecto secundario realizar la petición a la API
-    getRecipe();
-  }, []);
-
-  if (!recipe) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        <Spinner color="#7ae582" />
-      </View>
-    );
-  }
-
+const Home = () => {
   return (
     <Container>
-      <Header >
-
+      <Header searchBar style={styles.header} androidStatusBarColor="#004e64">
+        <Item>
+          <Input inlineLabel placeholder="Buscar" />
+          <Button icon transparent >
+            <Feather name="search" size={29} color="#FFB347" />
+          </Button>
+        </Item>
       </Header>
       <Image
         source={require("../../../assets/KIWI.png")}
-        style={styles.logoApp}
+        style={styles.Zone}
       />
-      <H1 style={styles.title}>Recipe</H1>
-      <FlatList
-        data={recipe.results}
-        keyExtractor={(item) => item.id.toString()}
-        ListEmptyComponent={<Text>¡There is no Recipe at the moment!</Text>}
-        renderItem={({ item }) => {
-          return (
-            <View>
-              <Card>
 
-                <CardItem cardBody>
-                  <Image
-                    source={{
-                      uri: `${apiImageUrl}`
-                    }}
-                    /* style={styles.movieImage} */
-                  />
-                </CardItem>
-                <CardItem>
-                  <Body style={{ flex: 1, flexDirection: "row" }}>
-                    <View>
-                      <H3>{item.title}</H3>
+      <ScrollView style={styles.container}>
+        <TouchableOpacity style={styles.bubble}>
+          <Text style={styles.text1}>Instant Pot® Shrimp and Broccoli</Text>
+          <Text style={styles.text1}>Shrimp and broccoli stir-fry doesn't get any faster or easier than this.
+           Zero minutes is not a typo. 
+           The pot will take 10 minutes to come to pressure and that is all the cook time the shrimp needs.
+            Serve over rice if desired</Text>
+          <Image
+            source={require("../../../assets/Shrimp-and-broccoli2.jpg")}
+            style={styles.image}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.bubble}>
+          <Text style={styles.text1}>Crab apple and chilli glazed beef sirloin</Text>
+          <Text style={styles.text1}>This glazed beef sirloin recipe is so easy. 
+          It takes just 30 minutes to prepare, plus a quick blast in the oven.
+           An easy, delicious Easter roast.</Text>
+          <Image
+            source={require("../../../assets/Crab_Apple.jpg")}
+            style={styles.image}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.bubble}>
+          <Text style={styles.text1}>Vegan spaghetti bolognese</Text>
+          <Text style={styles.text1}>This speedy vegan version of spaghetti bolognese is made by blitzing and browning quality plant-based sausages. 
+          The use of soy and balsamic brings bold flavour in minutes, 
+          so this bolognese sauce is finished by the time the pasta has cooked.</Text>
+          <Image
+            source={require("../../../assets/spagheitti-bolognese.jpg")}
+            style={styles.image}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.bubble}>
+          <Text style={styles.text1}>Cuban Sandwich (Cubano)</Text>
+          <Text style={styles.text1}>Here's how to make the BEST Traditional Cuban Sandwich, a.k.a. 
+          the Cubano, at home! Layers of mojo-marinated pork roast, 
+          ham, cheese, and pickles make this sandwich outstanding. Serve toasted grilled bread sandwich hot or cold!</Text>
+          <Image
+            source={require("../../../assets/cuban.webp")}
+            style={styles.image}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.bubble}>
+          <Text style={styles.text1}>Chicken Tacos With Pineapple Salsa</Text>
+          <Text style={styles.text1}>Best Healthy tacos of the world, with ingredients found at our sweet home.</Text>
+          <Image
+            source={require("../../../assets/tacos.webp")}
+            style={styles.image}
+          />
+        </TouchableOpacity>
 
-
-                    </View>
-                  </Body>
-                </CardItem>
-              </Card>
-            </View>
-          );
-        }}
-      />
+      </ScrollView>
     </Container>
-  );
-};
+  )
+}
 
-// Estilos de nuestra pantalla
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  input: {
-    margin: 15,
+    width: width,
+    backgroundColor: "#2ECFCA",
+    paddingTop: 10,
+
   },
 
-  logoApp: {
+  bubble: {
+    width: width * 0.9,
+    backgroundColor: "#F9F3DE",
+    margin: 5,
+    padding: 10,
+    alignSelf: 'center',
+    height: height * 0.50,
+    borderRadius: 9,
+
+  },
+  text1: {
+    margin: 5,
+    fontSize: 12,
+  },
+
+  Zone: {
     width: width,
-    height: height * 0.15,
-    resizeMode: "contain",
+    height: height * 0.10,
+    margin: 10,
+    padding: 10,
+    resizeMode: "cover",
+    
+  },
+  image: {
+    width: width * 0.7,
+    height: height * 0.3,
+    alignSelf: "center",
+    borderRadius: 9,
+    /* resizeMode: "cover", */
   },
   header: {
-    backgroundColor: "#00a5cf",
+    backgroundColor: "#FF8E18",
   },
-
-  title: {
-    color: "#00a5cf",
-    textAlign: "center",
-    marginBottom: 5,
-  },
-
-  img: {
-    height: 150,
-    width: 150,
-    marginHorizontal: 4,
-    marginVertical: 6,
-  },
-
 });
 
 export default Home;
