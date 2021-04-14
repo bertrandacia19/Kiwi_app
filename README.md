@@ -23,31 +23,9 @@ Clona este repositorio. Necesitas tener instalado node, npm y expo-cli de manera
 ###### **Spoonacular recipe and food DB API key:**
 Para que la aplicación pueda funcionar, requieres de una API key válida para poder comunicarte con la API de Spoonacular recipe and food  DB. 
 
-Una vez que obtengas tu API key, debes crear el archivo enviroment.js en la raíz del directorio y configurarlo de la siguiente manera:
+Una vez que obtengas tu API key, debes crear el archivo enviroment.js en la raíz del directorio y configurarlo 
 
-import Constant from "expo-constants";
 
-const ENV = {
-  dev: {
-    apiKey: "cb4ed0fc1360404aa0033a4b54f1f29d",
-    apiUrl:"https://api.spoonacular.com/",
-    apiImageUrl: "https://spoonacular.com/recipeImages",
-
- 
-  },
-  production: {
-    apiKey: "cb4ed0fc1360404aa0033a4b54f1f29d",
-    apiUrl:"https://api.spoonacular.com/",
-    apiImageUrl: "https://spoonacular.com/recipeImages",
-
-    
-  },
-};
-const getEnvVarsApi = (env = Constant.manifest.releaseChannel) => {
-  if (_DEV_) return ENV.dev;
-  else if (env === "production" || env === "default") return ENV.production;
-};
-export default getEnvVarsApi;
 
 
 ## Documentación
