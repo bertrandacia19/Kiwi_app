@@ -1,52 +1,88 @@
-import React from 'react';
-import { StyleSheet, Text, ScrollView, Dimensions,Image} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+//importación de los modulos necesarios
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, Image, Dimensions} from "react-native"; 
 import { Container, Input, Icon, Item, Button, Header, H1, View, Spinner, Card, CardItem, H3,Body} from "native-base";
 import { Feather } from '@expo/vector-icons';
+import backend from '../../Api/Backend';
+import getEnvVars from "../../EnviromentApi";
+import { FlatList } from "react-native-gesture-handler";
 
+const { apikey} = getEnvVars();
+//obtener los valores 
 const {width, height} = Dimensions.get("window");
 
-const Home = () => {
+
+//pantalla que contiene la variables de rnderizar
+const Home = ({ navigation }) =>{
+
+    //maneja el estado de las peliculas
+    const[Recipes,setRecete]=useState(null);
+    const[error,setError]=useState(false);
+   
+    //promesas y asincronia
+    
+    const getRecipeInfo=async() =>{
+        try{
+            //consultar la API de  recetas
+            const response =await backend.get( 'https://api.spoonacular.com/recipes/complexSearch?apiKey=cb4ed0fc1360404aa0033a4b54f1f29d');
+            setRecete(response.data);
+            //console.log(response.data)
+        }catch(error){
+            //error al moment
+           setError(true);
+        }
+    }
+
+
+    //Hook de efecto
+    useEffect(() => {
+        getRecipeInfo();
+      }, []);
+
+
+
+
+      if (!Recipes) {
+        return(
+            <View style={{flex : 1, justifyContent: "center"}}>
+               <Spinner color = "pink" />
+            </View>  
+        )
+      }
+
+
+
     return (
-        <Container>
-        <Header searchBar style={styles.header} androidStatusBarColor="#004e64">
-              <Item>
-              
-               <Input inlineLabel placeholder = "Buscar"  />
-                  <Button icon transparent >
-                    <Feather name="search" size={29} color="#FFB347" />
-                  </Button>
-              </Item>
-         </Header>
-         <Image
-          source = {require("../../../assets/KIWI.png")} 
-          style={styles.Zone}
-         />
-          
-           
-          <ScrollView style={styles.container}>
-            <TouchableOpacity style={styles.bubble}>
-                <Text style={styles.text1}>Pollo Frito</Text>
-                <Text style={styles.text1}>Ingredientes</Text>
-            </TouchableOpacity>
 
-            <TouchableOpacity style={styles.bubble}>
-                <Text style={styles.text1}>Pollo Frito</Text>
-                <Text style={styles.text1}>Ingredientes</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.bubble}>
-                <Text style={styles.text1}>Pollo Frito</Text>
-                <Text style={styles.text1}>Ingredientes</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.bubble}>
-                <Text style={styles.text1}>Pollo Frito</Text>
-                <Text style={styles.text1}>Ingredientes</Text>
-            </TouchableOpacity>
-            </ScrollView>
-        </Container>
+            <Container>
+             <Header >
+               </Header>
+               <Image
+                source = {require("../../assets/KIWI.png")}
+                style={styles.Zone}
+               />
+                <H1 style={{marginTop: 30 }}>Recipes</H1>
+                <FlatList
+                data = {Recipes}
+                 keyExtractor = {(item) => item.id}
+                 ListEmptyComponent = {<Text>!No contiene niguna info</Text>}
+                 renderItem = {({item })=>{
+                   return(
+                     <View>
+                        <Card>
+                          <CardItem>
+                            <Body>
+                             <H3>{item.title} </H3>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                     </View>
     )
-}
+                }}
+                />
+            </Container>
+    );
+};
 
 const styles = StyleSheet.create({
     container : {
