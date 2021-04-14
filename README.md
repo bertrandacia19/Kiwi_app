@@ -1,3 +1,6 @@
+<a href=""><img src="assets/KIWI.png" alt="título " width="200" ></a>
+
+
 # Kiwi_app
 Es una aplicación que te permite conectar a la API de 
 spoonacular recipe and food API y mostrar información
