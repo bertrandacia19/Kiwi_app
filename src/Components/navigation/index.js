@@ -11,11 +11,30 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Recover from '../Screens/CambioContra'
 import SignOut from '../Screens/SignOut';
 import {Context as AuthContext} from '../../providers/AuthContext';
-
+import Busqueda from '../Screens/Busqueda';
 
 const Inicio =  createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
+const stack1 = createStackNavigator();
 
+function stack2() {
+ return(
+  <Stack.Navigator screenOptions={{headerShown:false}}>
+    
+
+  <stack1.Screen name="Inicio"
+      component={Home}
+    />
+
+    <stack1.Screen name="Busqueda"
+    component={Busqueda}
+  />
+
+ </Stack.Navigator>
+
+ )
+
+}
  
 
 
@@ -29,11 +48,10 @@ function MyInicio() {
     shifting={true} >
 
 
-    <Inicio.Screen name="Inicio"
-    component={Home}options={{
-        tabBarColor:'#FF8E18', tabBarIcon:({color})=>(<FontAwesome name="home" size={26} color={color } />)}}  />
-    <Inicio.Screen name=" "options={{ tabBarColor:'#FF8E18',tabBarIcon:({color})=>(<FontAwesome name="location-arrow" size={24} color={color } /> )}} component={Home} />
-    <Inicio.Screen name="  " options={{ tabBarColor:'#FF8E18',tabBarIcon:({color})=>(<MaterialIcons name="person-pin" size={24} color={color } />)}}component={SignOut} />
+    <Inicio.Screen name="Home"
+    component={stack2}options={{
+        tabBarColor:'#6AB72A', tabBarIcon:({color})=>(<FontAwesome name="home" size={26} color={color } />)}}  />
+    <Inicio.Screen name="Profile" options={{ tabBarColor:'#6AB72A',tabBarIcon:({color})=>(<MaterialIcons name="person-pin" size={24} color={color } />)}}component={SignOut} />
   </Inicio.Navigator>
    )
     }
@@ -55,14 +73,14 @@ const Navigation = () => {
     <>
       {state.loggedIn ? (
         <Stack.Navigator screenOptions={{headerShown:false}}>
-          <Stack.Screen name="Home" component={MyInicio
-} />
+          <Stack.Screen name="Home" component={MyInicio} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator screenOptions={{headerShown:false}}>
             <Stack.Screen name="Signin" component={Signin}  />
             <Stack.Screen name="SignUp" component={Signup}  />
             <Stack.Screen name="Recover" component={Recover} />
+            <Stack.Screen name="Busqueda" component={Busqueda} />
        
         </Stack.Navigator>
       )}

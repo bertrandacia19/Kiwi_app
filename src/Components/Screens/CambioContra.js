@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Dimensions} from 'react-native';
 import Logo from '../Shared/Logo';
 import { Input, Button } from "react-native-elements";
 import { firebase } from "../../firebase";
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         fontSize:20,
     },
     button: {
-        width: 380,
+        width: 350,
         backgroundColor:'#527e05',
         margin: 5,
         

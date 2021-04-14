@@ -1,144 +1,91 @@
-//importación de los modulos necesarios
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text,View, Image,FlatList,Dimensions} from "react-native"; 
-import { Container, Input, Icon, Item, Button, Header, H1, Spinner, Card, CardItem, H3,Body} from "native-base";
-import backend from '../../Api.js/Backend';
-import getEnvVars from "../../../EnviromentApi";
-
-const {apiKey, apiImageUrl} = getEnvVars();
-
-// Obtener los valores por destructuring
+import { Feather } from '@expo/vector-icons';
+import {  Dimensions, StyleSheet, ScrollView, Image, Text, } from 'react-native';
 const { width, height } = Dimensions.get("window");
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Container, Header, Item, Input, Button } from "native-base";
+import React from 'react';
 
-// Variable que contiene la pantalla (renderizar)
-const Busqueda = ({ navigation }) => {
-  // Maneja el estado de las recetas
-  const [recipe, setRecipe] = useState(null);
-  const [error, setError] = useState(false);
-  
-  const getRecipe = async () => {
-    try {
-      // Consultar la API de recetas
-      const response = await backend.get(
-        `recipes/complexSearch?apiKey=cb4ed0fc1360404aa0033a4b54f1f29d`
-      );
-
-      setRecipe(response.data);
-    } catch (error) {
-      // Error al momento de ejecutar la petición a la API
-      setError(true);
-    }
-};
- 
-
-// Hook de efecto
-useEffect(() => {
-  // Efecto secundario realizar la petición a la API
-  getRecipe();
-}, []);
-
-if (!recipe) {
+const Busqueda = ( {navigation}  ) => {
   return (
-    <View style={{ flex: 1, justifyContent: "center" }}>
-      <Spinner color="#7ae582" />
-    </View>
-  );
+    <Container>
+      <Image
+        source={require("../../../assets/KIWI.png")}
+        style={styles.Zone}
+      />
+
+      <ScrollView style={styles.container}>
+        <TouchableOpacity style={styles.bubble }>
+          
+          <Text style={styles.text1}>Ingredientes</Text>
+          <Text style={styles.text1}>¼ cup reduced-sodium soy sauce
+              2 tablespoons oyster sauce
+              1 tablespoon rice vinegar
+              2 teaspoons sesame oil
+              1 teaspoon brown sugar
+              1 teaspoon Sriracha sauce
+              1 teaspoon minced garlic
+              1 pound raw peeled and deveined shrimp
+              2 tablespoons cornstarch
+              2 tablespoons cold water
+          </Text>
+          <Text style={styles.text1}>DirectionsInstructions Checklist
+            Step 1
+            Whisk soy sauce, oyster sauce, rice vinegar, sesame oil, brown sugar, Sriracha sauce, and garlic in a small bowl until smooth.
+
+            Step 2
+            Pour sauce into a multi-functional pressure cooker (such as Instant Pot®). Stir in shrimp. Close and lock the lid. Select high pressure according to manufacturer's instructions; set timer for 0 minutes. Allow 10 minutes for pressure to build.
+
+            Step 3
+            Meanwhile, whisk cornstarch and cold water together until smooth.
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </Container>
+  )
 }
 
-return (
-  <Container>
-    <Header searchBar style={styles.header} androidStatusBarColor="#004e64">
-        <Item style={{ flex: 3 }}>
-            <Input
-                placeholder={
-                searchError ? "Ingresa un valor de búsqueda" : "Buscar..."
-                }
-                placeholderTextColor={searchError ? "red" : "gray"}
-                value={search}
-                onChangeText={setSearch}
-            />
-        </Item>
-        <Button onPress={handlerSearch} style={styles.searchButton}>
-            <Icon name="search" />
-        </Button>
-    </Header>
-    <Image
-      source={require("../../../assets/KIWI.png")}
-      style={styles.logoApp}
-    />
-    <H1 style={styles.title}>Recipe</H1>
-    <FlatList
-      data={recipe.results}
-      keyExtractor={(item) => item.id.toString()}
-      ListEmptyComponent={<Text>¡There is no Recipe at the moment!</Text>}
-      renderItem={({ item }) => {
-        return (
-          <View>
-              <Card>
-                <CardItem>
-                  <Body style={{ flex: 1, flexDirection: "row" }}>
-                    <View>
-                      <H3>{item.title}</H3>
-                      
-                      <Image
-                        source={{
-                          uri: `${apiImageUrl}${Item.image}`,
-                        }}
-                        style={styles.movieImage}
-                      />
-                  
-                    </View>
-                  </Body>
-                </CardItem>
-              </Card>
-          </View>
-        );
-      }}
-    />
-  </Container>
-);
-};
-
-// Estilos de nuestra pantalla
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  input: {
-    margin: 15,
-  },
- 
-  logoApp: {
     width: width,
-    height: height * 0.15,
-    resizeMode: "contain",
+    backgroundColor: "#6AB72A",
+    paddingTop: 10,
+
+  },
+
+  bubble: {
+    width: width * 0.9,
+    backgroundColor: "#F9F3DE",
+    margin: 5,
+    padding: 10,
+    alignSelf: 'center',
+    height: height * 0.70,
+    borderRadius: 9,
+
+  },
+  text1: {
+    margin: 5,
+    fontSize: 12,
+  },
+
+  Zone: {
+    width: width,
+    height: height * 0.10,
+    margin: 10,
+    padding: 10,
+    resizeMode: "cover",
+    
+  },
+  image: {
+    width: width * 0.7,
+    height: height * 0.3,
+    alignSelf: "center",
+    borderRadius: 9,
+    /* resizeMode: "cover", */
   },
   header: {
-    backgroundColor: "#00a5cf",
+    backgroundColor: "#FF8E18",
   },
-  
-  searchButton: {
-    flex: 1,
-    backgroundColor: "#7ae582",
-    marginLeft: 10,
-    height: 40,
-  },
-
-  title: {
-    color: "#00a5cf",
-    textAlign: "center",
-    marginBottom: 5,
-  },
-
-  img:{
-    height: 150,
-    width: 150,
-    marginHorizontal: 4,
-    marginVertical: 6,
-  },
-  
 });
 
 export default Busqueda;

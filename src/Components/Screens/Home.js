@@ -6,14 +6,14 @@ import { Feather } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get("window");
 
-const Home = () => {
+const Home = ( {navigation}  ) => {
   return (
     <Container>
-      <Header searchBar style={styles.header} androidStatusBarColor="#004e64">
+      <Header searchBar style={styles.header} androidStatusBarColor="#6AB72A">
         <Item>
-          <Input inlineLabel placeholder="Buscar" />
+          <Input inlineLabel placeholder="Search" />
           <Button icon transparent >
-            <Feather name="search" size={29} color="#FFB347" />
+            <Feather name="search" size={29} color="#6AB72A" />
           </Button>
         </Item>
       </Header>
@@ -23,7 +23,8 @@ const Home = () => {
       />
 
       <ScrollView style={styles.container}>
-        <TouchableOpacity style={styles.bubble}>
+        <TouchableOpacity style={styles.bubble } onPress={ () =>  navigation.navigate('Busqueda')}>
+          
           <Text style={styles.text1}>Instant Pot® Shrimp and Broccoli</Text>
           <Text style={styles.text1}>Shrimp and broccoli stir-fry doesn't get any faster or easier than this.
            Zero minutes is not a typo. 
@@ -33,8 +34,8 @@ const Home = () => {
             source={require("../../../assets/Shrimp-and-broccoli2.jpg")}
             style={styles.image}
           />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.bubble}>
+        </TouchableOpacity >
+        <TouchableOpacity  style={styles.bubble } onPress={ () =>  navigation.navigate('Busqueda')}>
           <Text style={styles.text1}>Crab apple and chilli glazed beef sirloin</Text>
           <Text style={styles.text1}>This glazed beef sirloin recipe is so easy. 
           It takes just 30 minutes to prepare, plus a quick blast in the oven.
@@ -44,7 +45,7 @@ const Home = () => {
             style={styles.image}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bubble}>
+        <TouchableOpacity style={styles.bubble} onPress={ () =>  navigation.navigate('Busqueda')} >
           <Text style={styles.text1}>Vegan spaghetti bolognese</Text>
           <Text style={styles.text1}>This speedy vegan version of spaghetti bolognese is made by blitzing and browning quality plant-based sausages. 
           The use of soy and balsamic brings bold flavour in minutes, 
@@ -54,7 +55,7 @@ const Home = () => {
             style={styles.image}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bubble}>
+        <TouchableOpacity style={styles.bubble} onPress={ () =>  navigation.navigate('Busqueda')} >
           <Text style={styles.text1}>Cuban Sandwich (Cubano)</Text>
           <Text style={styles.text1}>Here's how to make the BEST Traditional Cuban Sandwich, a.k.a. 
           the Cubano, at home! Layers of mojo-marinated pork roast, 
@@ -64,7 +65,7 @@ const Home = () => {
             style={styles.image}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bubble}>
+        <TouchableOpacity style={styles.bubble} onPress={ () =>  navigation.navigate('Busqueda')} >
           <Text style={styles.text1}>Chicken Tacos With Pineapple Salsa</Text>
           <Text style={styles.text1}>Best Healthy tacos of the world, with ingredients found at our sweet home.</Text>
           <Image
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: width,
-    backgroundColor: "#2ECFCA",
+    backgroundColor: "#F1E4DD",
     paddingTop: 10,
 
   },
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     /* resizeMode: "cover", */
   },
   header: {
-    backgroundColor: "#FF8E18",
+    backgroundColor: "#6AB72A",
   },
 });
 
