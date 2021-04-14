@@ -1,7 +1,7 @@
 import axios from "axios";
 import getEnvVars from "../../EnviromentApi";
 
-const {ApiKey}=getEnvVars();
+const {apiUrl}=getEnvVars();
 
 //crear una instancia de conexion
 
