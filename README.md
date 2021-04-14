@@ -23,6 +23,9 @@ Para que la aplicación pueda funcionar, requieres de una API key válida para p
 Una vez que obtengas tu API key, debes crear el archivo enviroment.js en la raíz del directorio y configurarlo de la siguiente manera:
 
 
+## Documentación
+https://docs.google.com/document/d/11jI37CNhx1v0Grn3E-3NnpQGxtFKrbBP9iWI6XmhXcU/edit?usp=drivesdk
+
 ## Contribuidores
 - Rocio Lopez
 - Nicole Aguilar
